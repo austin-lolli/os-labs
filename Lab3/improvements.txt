@@ -1,0 +1,33 @@
+Austin Lolli
+COEN 177
+12/13/2016
+
+Lab 3 Addendum: Improvement and Random Algorithm
+
+	In this revisitation of page replacement algorithms, we look at improvements to the overall 
+performance of such algorithms through combination or by addition of new conditions to existing 
+algorithms. As far as answering the question of how, the answer of course, is that it depends; 
+specifically on the requests coming in and what improvement might look like in relation to the 
+requests entering the page frame. 
+	One such improvement might come from combining Least Recently Used and Least Frequently 
+Used. In its most basic form, LFU removes a page by selecting the page with the lowest frequency of 
+access since entering the page frame. Without any other conditions, a tie in minimal frequency of use 
+will result in either the first or last of all pages with a tie being ejected (depending on how it is 
+implemented). By using LRU as a tie breaker in these situations, we improve performance of LFU in 
+situations where pages that have entered recently are more likely to be requested again. This would be 
+useful when we expect page requests to follow long trends of page numbers ascending or descending 
+(meaning that if ascending, [6, 11, 8] 11 would be most likely to be requested again,and 6 would be 
+least likely). 
+	The Random replacement algorithm is best explained by its own name. When the page table is full, 
+the python (*pseudo) random number generator is used modulo the size of the page frame to randomly
+select a page for removal. The exact faults for the sample set fluctuates, but localizes in a range 
+approximated by the LRU algorithm. It can be difficult to conceive how randomness might improve a page 
+replacement algorithm, but it might also work well as the tie breaker condition in the LFU algorithm.
+Consider incoming requests to a pageframe of size n, with very unordered requests ranging from a pool 
+much larger than n. In other words, there is no easy way to predict what pages in the page frame are 
+most likely to be reqeusted again soon. Instead of removing the oldest of the lowest frequency elements, 
+removing a random page from all of those of lowest frequency might improve performance in these cases. 
+	The page replacement algorithms commonly used make for a good base for addressing page replacement 
+needs and can be adjusted to best fit the incoming page requests. While the perfect page replacement 
+algorithm may be theoretical, properly choosing or constructing the page replacment algorithm that will 
+perform best is both practical and achievable.  
